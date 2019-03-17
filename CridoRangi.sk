@@ -1,0 +1,130 @@
+command /rangaodbier [<player>] [<text>]:
+	trigger:
+		if arg 1 is set:
+			if arg 2 is set:
+				if player has permission "crido.rangiOdejmij" or "crido.wszystko":
+					broadcast ""
+					broadcast "%player% zostal zdegradowany z rangi &b%arg 2%"
+					broadcast ""
+					wait 2 seconds
+					execute console command    "pex user %arg 1% group remove %arg 2%"
+				else:
+					send "Nie masz dostepu do tej komendy !!"
+					stop
+			else:
+				send "Poprawne uzycie : /rangaodejmij <nick> <ranga> "
+				stop
+		
+command /rangadodaj [<player>] [<text>]:
+	trigger:
+		if arg 1 is set:
+			if arg 2 is set:
+				if player has permission "crido.rangiDodaj" or "crido.wszystko":
+					broadcast ""
+					broadcast "%player% zostal &b&1arg 2"
+					broadcast ""
+					wait 2 seconds
+					execute console command    "pex user %arg 1% group set %arg 2%"
+				else:
+					send "Nie masz dostepu do tej komendy !!"
+					stop
+			else:
+				send "Poprawne uzycie : /rangadodaj <nick> <ranga> "
+				stop
+command /dodajpermisje [<player>] [<text>]:
+	trigger:
+		if arg 1 is set:
+			if arg 2 is set:
+				if player has permission "crido.rangiPermisja" or "crido.wszystko":
+					wait 2 seconds
+					execute console command    "pex user %arg 1% add %arg 2%"
+				else:
+					send "»Nie masz dostepu do tej komendy !!"
+					stop
+		else:
+			send "»Poprawne uzycie : /rangaodejmij <nick> <ranga> "
+			stop
+command /cridorangi [<text>] [<player>]:
+	trigger:
+		if player has permission "crido.rangiKomenda" or "crido.wszystko":
+			send "&8»[CridoTech] Komendy:" 
+			send "&7»/rangadodaj <gracz> <ranga>" 
+			send "&7»/rangaodejmij <gracz> <ranga>" 
+			send "&7»/dodajpermisje <gracz> <permisja>" 
+		else:
+			send "&8» Nie masz dostepu do tej komendy, brakujace permisje to : crido.rangiKomenda "
+			wait 2 seconds 
+			send "&6Crido.Net.PL" 
+			stop 
+command /cridoban [<player>] [<text>]:
+	trigger: 
+		if arg 1 is set:
+			if arg 2 is set:
+				if player has permission "crido.zbanuj" or "crido.wszystko":
+					execute console command "ban %arg 1%"
+				else:
+					send "&6»Nie masz permisji do tej komendy, brakujace permisje to crido.zbanuj"
+					stop
+command /cridounban [<player>] [<text>]:
+	trigger:
+		if arg 1 is set:
+			if arg 2 is set:
+				if player has permission "crido.unban" or "crido.wszystko":
+					execute console command "pardon %arg 1%"
+				else:
+					send "&6»Nie masz permisji do tej komendy, brakujace permisje to crido.unban"
+					stop
+command /jajko:
+	trigger:
+		send "»&9Znalazles tajemnicze jajako !"
+		wait 1 seconds 
+		broadcast "»&5%player% Znalazl tajemnicze jajko ! "
+		wait 1 seconds 
+		send "&2»Dostales 1 jajko !"
+		give 1 egg to player 
+		stop
+command /dzien [<text>]:
+	trigger:
+		if player has permission "crido.dzien" or "crido.wszystko":
+			execute console command "time set day"
+			broadcast "&c%player% &5zmienil pore dnia na : &2dzien !"
+		else:
+			send "&7»Nie masz permisji do tej komendu, brakujace permisje to crido.dzien"
+			stop
+command /noc [<text>]:
+	trigger:
+		if player has permission "crido.noc" or "crido.wszystko":
+			execute console command "time set night"
+			broadcast "&c%player% &5zmienil pore dnia na : &0noc !"
+		else:
+			send "&7»Nie masz permisji do tej komendu, brakujace permisje to crido.noc"
+			stop
+command /cridowyrzuc [<player>] [<text>]:
+	trigger:
+		if arg 1 is set:
+			if arg 2 is set:
+				if player has permission "crido.kick" or "crido.wszystko":
+					execute console command "kick %arg 1%"
+					send "»%player% wyrzucil %arg 1% z serwera !" 
+				else: 
+					send "»Nie masz permisji do tej komendy, brakujace permisje to crido.kick"
+					stop
+command /wylaczdeszcz:
+	trigger:
+		if player has permission "crido.pogoda.deszczwl" or "crido.wszystko":
+			execute console command "weather clear"
+			send "»&4%player% ustawił pogode na Bezchmurna"
+			stop
+command /wlaczdeszcz:
+	trigger:
+		if player has permission "crido.pogoda.deszczwyl" or "crido.wszystko":
+			execute console command "weather rain"
+			send "»&4%player% ustawił pogode na Deszczowa"
+			stop
+command /burza:
+	trigger:
+		if player has permission "crido.pogoda.burza" or "crido.wszystko":
+			execute console command "weather thunder"
+			send "»&4%player% ustawił pogode na Burzowa"
+			stop
+
